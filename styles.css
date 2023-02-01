@@ -1,4 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Inconsolata', monospace;
+}
+
+
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+.header {
+    background-color: rgb(80, 80, 80);
+    padding: 20px;
+
+    box-shadow: 2px 2px 3px 1px gray;
+    z-index: 1;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.main-content {
+    background-color: rgb(160, 160, 160);
+    padding: 30px; 
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 50px;
+}
+
+.footer {
+    background-color: rgb(160, 160, 160);
+    padding: 15px
+}
+
+.credentials {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    text-align: center;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+
+    height: 150px;
+    padding: 30px;
+    background-color: rgb(231, 231, 231);
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 2px gray
+}
+
+.btn { 
+    padding: 5px 25px;
+    width: 100px;
+    border: none;
+    border-radius: 5px
+}
+
+form {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 250px;
+    
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px 5px gray;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-title {
+    font-weight: 700;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type='text'],
+input[type='number'] {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid gray;
+}
+
+input[type='text']:focus,
+input[type='number']:focus {
+    outline: none;
+    border: 2px solid rgb(0, 85, 0);
+}
+
+.form-btn {
+    align-self: center;
 }
