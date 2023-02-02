@@ -37,9 +37,9 @@ function addBookToLibrary(e) {
     pages = pagesField.value;
     have_read = haveReadField.checked;
     let book = new Book(title, author, pages, have_read);
-    titleField.value = '';
-    authorField.value = '';
-    pagesField.value = '';
+    titleField.value = "";
+    authorField.value = "";
+    pagesField.value = "";
     myLibrary.push(book);
     form.style.display = "none";
     let index = myLibrary.indexOf(book);
@@ -61,17 +61,16 @@ function displayBook(index) {
   pagesDiv.textContent = `${book["pages"]} Pages`;
   haveReadButton.textContent = "Read";
   haveReadButton.classList.add("btn", "have-read");
-  if (book['have_read'] === false) {
+  if (book["have_read"] === false) {
     haveReadButton.textContent = "Not Read";
-    haveReadButton.classList.add('false');
+    haveReadButton.classList.add("false");
   }
   removeButton.textContent = "Remove";
   removeButton.classList.add("btn", "remove");
   bookDiv.append(titleDiv, authorDiv, pagesDiv, haveReadButton, removeButton);
   library.appendChild(bookDiv);
-  prepareButtons(haveReadButton, removeButton);
+  prepareButtons(haveReadButton, removeButton, bookDiv);
 }
-
 
 /* 
 function displayLibrary() {
@@ -103,26 +102,27 @@ function displayLibrary() {
 }
 */
 
-function prepareButtons(haveReadButton, removeButton) {
-  haveReadButton.addEventListener('click', () => {
+function prepareButtons(haveReadButton, removeButton, bookDiv) {
+  haveReadButton.addEventListener("click", () => {
     changeReadStatus(haveReadButton);
   });
-  removeButton.addEventListener('click', () => {
-    deleteBook();
-  })
+  removeButton.addEventListener("click", () => {
+    deleteBook(bookDiv);
+  });
 }
 
 function changeReadStatus(button) {
   button.classList.toggle("false");
   if (button.textContent === "Read") {
-    button.textContent = "Not Read"
+    button.textContent = "Not Read";
   } else {
-    button.textContent = "Read"
+    button.textContent = "Read";
   }
 }
 
-function deleteBook() {
-
+function deleteBook(bookDiv) {
+  /* myLibrary[index].splice(index, 1); */
+  bookDiv.remove();
 }
 
 function openForm() {
@@ -133,7 +133,7 @@ function closeForm() {
   form.style.display = "none";
 }
 
-// need a way for the read status to NOT be changed when a new book is added. 
+// need a way for the read status to NOT be changed when a new book is added.
 
 // form - to submit the data. Need a popup form that appears with JavaScript
 // data is submitted somehow to this script.
