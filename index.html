@@ -1,48 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="header">
-        <div class="title">library</div>
+      <div class="title">library</div>
+      <button class="btn add-book">+ Add Book</button>
     </div>
     <div class="main-content">
-        <div class="book">
-            <div class="book-property">"Hobbit"</div>
-            <div class="book-property">J.R.R. Tolkein</div>
-            <div class="book-property">294 Pages</div>
-            <button class="btn">Read</button>
-            <button class="btn">Remove</button>
+      
+      <form action="" method="post" class="form">
+        <div class="form-row title-row">
+          <div class="form-title">Add Your Book!</div>
+          <button class="btn close" type="button">X</button>
         </div>
-        <form action="" method="post" class="form">
-            <div class="form-title">Add Your Book!</div>
-            <div class="form-row">
-                <label for="title">Title</label>
-                <input type="text" placeholder="This book is called..." name="title" id="title" required>
-            </div>
-            <div class="form-row">
-                <label for="author">Author</label>
-                <input type="text" placeholder="Who wrote it?" name="author" id="author" required>
-            </div>
-            <div class="form-row">
-                <label for="pages">Pages</label>
-                <input type="number" name="pages" id="pages" placeholder="Number of Pages" required>
-            </div>
-            <div class="form-row">
-                <input type="checkbox" name="have_read" id="have_read" value="Yes">
-                <label for="have_read">I have read this book!</label>
-            </div>
-            <button class="btn form-btn">Submit</button>
-        </form>
+        <div class="form-row">
+          <label for="title">Title</label>
+          <input
+          type="text"
+            placeholder="This book is called..."
+            name="title"
+            id="title"
+            required
+            maxlength="25"
+            />
+          </div>
+          <div class="form-row">
+            <label for="author">Author</label>
+            <input
+            type="text"
+            placeholder="Who wrote it?"
+            name="author"
+            id="author"
+            required
+            maxlength="25"
+            />
+          </div>
+          <div class="form-row">
+            <label for="pages">Pages</label>
+            <input
+            type="number"
+            name="pages"
+            id="pages"
+            placeholder="Number of Pages"
+            required
+          />
+        </div>
+        <div class="form-row">
+          <input type="checkbox" name="have_read" id="have_read"/>
+          <label for="have_read">I have read this book!</label>
+        </div>
+        <button class="btn form-btn" type="submit">Submit</button>
+      </form>
+      <div class="book">
+        <div>"Hobbit"</div>
+        <div>J.R.R. Tolkein</div>
+        <div>294 Pages</div>
+        <button class="btn">Read</button>
+        <button class="btn">Remove</button>
+      </div>
     </div>
     <div class="footer">
-        <div class="credentials">Chris Tai 2023</div>
+      <div class="credentials">Chris Tai 2023</div>
     </div>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
