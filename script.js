@@ -72,36 +72,6 @@ function displayBook(index) {
   prepareButtons(haveReadButton, removeButton, bookDiv);
 }
 
-/* 
-function displayLibrary() {
-  library.textContent = '';
-  for (let i = 0; i < myLibrary.length; i++) {
-    let book = myLibrary[i];
-    let bookDiv = document.createElement("div");
-    bookDiv.classList.add("book");
-    let titleDiv = document.createElement("div");
-    let authorDiv = document.createElement("div");
-    let pagesDiv = document.createElement("div");
-    let haveReadButton = document.createElement("button");
-    let removeButton = document.createElement("button");
-    titleDiv.textContent = `${book["title"]}`;
-    authorDiv.textContent = `${book["author"]}`;
-    pagesDiv.textContent = `${book["pages"]} Pages`;
-    haveReadButton.textContent = "Read";
-    removeButton.textContent = "Remove";
-    haveReadButton.classList.add("btn", "have-read");
-    if (book['have_read'] === false) {
-      haveReadButton.classList.add('false');
-      haveReadButton.textContent = 'Not Read';
-    }
-    removeButton.classList.add("btn", "remove");
-    bookDiv.append(titleDiv, authorDiv, pagesDiv, haveReadButton, removeButton);
-    library.appendChild(bookDiv);
-  }
-  prepareButtons();
-}
-*/
-
 function prepareButtons(haveReadButton, removeButton, bookDiv) {
   haveReadButton.addEventListener("click", () => {
     changeReadStatus(haveReadButton);
@@ -121,7 +91,6 @@ function changeReadStatus(button) {
 }
 
 function deleteBook(bookDiv) {
-  /* myLibrary[index].splice(index, 1); */
   bookDiv.remove();
 }
 
@@ -132,13 +101,3 @@ function openForm() {
 function closeForm() {
   form.style.display = "none";
 }
-
-// need a way for the read status to NOT be changed when a new book is added.
-
-// form - to submit the data. Need a popup form that appears with JavaScript
-// data is submitted somehow to this script.
-// script takes the data and puts it into a NEW object called Book
-// That Book is appended to myLibrary array
-
-// a SEPARATE function takes the Books in the array and displays them on the page
-// This function needs to take the data and DISPLAY it.
