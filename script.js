@@ -60,11 +60,16 @@ function displayBook(index) {
   authorDiv.textContent = `${book["author"]}`;
   pagesDiv.textContent = `${book["pages"]} Pages`;
   haveReadButton.textContent = "Read";
-  removeButton.textContent = "Remove";
   haveReadButton.classList.add("btn", "have-read");
+  if (book['have_read'] === false) {
+    haveReadButton.textContent = "Not Read";
+    haveReadButton.classList.add('false');
+  }
+  removeButton.textContent = "Remove";
   removeButton.classList.add("btn", "remove");
   bookDiv.append(titleDiv, authorDiv, pagesDiv, haveReadButton, removeButton);
   library.appendChild(bookDiv);
+  prepareButtons(haveReadButton, removeButton);
 }
 
 
@@ -98,34 +103,26 @@ function displayLibrary() {
 }
 */
 
-prepareButtons();
-
-function prepareButtons() {
-  let haveReadButtons = document.querySelectorAll(".have-read");
-  let removeButtons = document.querySelectorAll(".remove");
-  haveReadButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      changeReadStatus(button);
-    }); 
+function prepareButtons(haveReadButton, removeButton) {
+  haveReadButton.addEventListener('click', () => {
+    changeReadStatus(haveReadButton);
   });
-  removeButtons.forEach((button) => {
-    button.addEventListener("click", deleteBook);
-  });
-  console.log(haveReadButtons);
+  removeButton.addEventListener('click', () => {
+    deleteBook();
+  })
 }
 
 function changeReadStatus(button) {
   button.classList.toggle("false");
   if (button.textContent === "Read") {
     button.textContent = "Not Read"
-
   } else {
     button.textContent = "Read"
   }
 }
 
 function deleteBook() {
-  console.log("hello");
+
 }
 
 function openForm() {
