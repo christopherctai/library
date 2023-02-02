@@ -5,9 +5,14 @@ const form = document.querySelector(".form");
 const close_button = document.querySelector(".close");
 const add_book_button = document.querySelector(".add-book");
 const submit_button = document.querySelector(".form-btn");
-close_button.addEventListener("click", closeForm);
-add_book_button.addEventListener("click", openForm);
+close_button.addEventListener("click", () => {
+  closeForm();
+});
+add_book_button.addEventListener("click", () => {
+  openForm();
+});
 submit_button.addEventListener("click", addBookToLibrary);
+
 let title;
 let author;
 let pages;
@@ -32,6 +37,9 @@ function addBookToLibrary(e) {
     pages = pagesField.value;
     have_read = haveReadField.checked;
     let book = new Book(title, author, pages, have_read);
+    titleField.value = '';
+    authorField.value = '';
+    pagesField.value = '';
     myLibrary.push(book);
     form.style.display = "none";
   }
@@ -39,10 +47,11 @@ function addBookToLibrary(e) {
 }
 
 function displayLibrary() {
+  library.textContent = '';
   for (let i = 0; i < myLibrary.length; i++) {
     let book = myLibrary[i];
     let bookDiv = document.createElement("div");
-    bookDiv.classList.add('book');
+    bookDiv.classList.add("book");
     let titleDiv = document.createElement("div");
     let authorDiv = document.createElement("div");
     let pagesDiv = document.createElement("div");
@@ -53,11 +62,41 @@ function displayLibrary() {
     pagesDiv.textContent = `${book["pages"]} Pages`;
     haveReadButton.textContent = "Read";
     removeButton.textContent = "Remove";
-    haveReadButton.classList.add("btn");
-    removeButton.classList.add("btn");
+    haveReadButton.classList.add("btn", "have-read");
+    removeButton.classList.add("btn", "remove");
     bookDiv.append(titleDiv, authorDiv, pagesDiv, haveReadButton, removeButton);
     library.appendChild(bookDiv);
   }
+  prepareButtons();
+}
+
+prepareButtons();
+
+function prepareButtons() {
+  let haveReadButtons = document.querySelectorAll(".have-read");
+  let removeButtons = document.querySelectorAll(".remove");
+  haveReadButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      changeReadStatus(button);
+    }); 
+  });
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", deleteBook);
+  });
+  console.log(haveReadButtons);
+}
+
+function changeReadStatus(button) {
+  button.classList.toggle("false");
+  if (button.textContent === "Read") {
+    button.textContent = "Not Read"
+  } else {
+    button.textContent = "Read"
+  }
+}
+
+function deleteBook() {
+  console.log("hello");
 }
 
 function openForm() {

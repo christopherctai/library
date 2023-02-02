@@ -75,18 +75,22 @@ ul {
 
 .btn { 
     padding: 5px 25px;
-    width: 100px;
+    width: 120px;
     border: none;
     border-radius: 5px;
     background-color:rgb(197, 197, 197)
 }
 
 .btn:active {
-    background-color: rgb(209, 209, 209);
+    background-color: rgb(173, 173, 173);
 }
 
-.btn.not-read {
+.btn.have-read.false {
     background-color: rgb(255, 108, 108);
+}
+
+.btn.have-read.false:active {
+    background-color: rgb(255, 84, 84);
 }
 
 form {
@@ -95,6 +99,7 @@ form {
     margin-right: auto;
     left: 0;
     right: 0;
+    top: 80px;
     width: 250px;
     
     background-color: white;
