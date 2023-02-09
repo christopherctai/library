@@ -28,6 +28,7 @@ class displayController {
       titleField.value = "";
       authorField.value = "";
       pagesField.value = "";
+      haveReadField.checked = false;
       myLibrary.push(book);
       form.style.display = "none";
     }
