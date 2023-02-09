@@ -1,4 +1,3 @@
-
 // CLASS REFACTOR 
 
 let myLibrary = []; 
@@ -17,7 +16,6 @@ class displayController {
       let bookDiv = bookDisplayer.createBookDisplay(myLibrary[i]);
       library.appendChild(bookDiv);
     }
-    /* this.prepareButtons(haveReadButton, removeButton, bookDiv); */
   }
   addBook = (e) => {
     e.preventDefault();
@@ -36,21 +34,23 @@ class displayController {
     this.displayLibrary();
   }
 
-  /* prepareButtons(haveReadButton, removeButton, bookDiv) {
-    haveReadButton.addEventListener("click", () => {
-      changeReadStatus(haveReadButton);
-    });
-    removeButton.addEventListener("click", () => {
-      deleteBook(bookDiv);
-    });
+  deleteBook(book) {
+    myLibrary.splice(myLibrary.indexOf(book), 1);
+    this.displayLibrary();
   }
-  deleteBook() {
-    bookDiv.remove();
-  } */
+
+  changeReadStatus(book) {
+    if (book.have_read) {
+      book.have_read = false;
+    } else {
+      book.have_read = true; 
+    }
+    this.displayLibrary();
+  }
 }
 
 class bookDisplay {
-  createBookDisplay(book) {
+  createBookDisplay = (book) => {
     // Createa book div 
     let bookDiv = document.createElement("div");
     bookDiv.classList.add("book");
@@ -74,7 +74,17 @@ class bookDisplay {
     removeButton.classList.add("btn", "remove");
     // Put the book internals into the book 
     bookDiv.append(titleDiv, authorDiv, pagesDiv, haveReadButton, removeButton);
+    // Prepare the buttons by adding event listeners 
+    this.prepareButtons(haveReadButton, removeButton, book);
     return bookDiv;
+  }
+  prepareButtons(haveReadButton, removeButton, book) {
+    haveReadButton.addEventListener("click", () => {
+      libraryDisplay.changeReadStatus(book);
+    });
+    removeButton.addEventListener("click", () => {
+      libraryDisplay.deleteBook(book);
+    });
   }
 }
 
