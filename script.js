@@ -1,4 +1,111 @@
-let myLibrary = [];
+
+// CLASS REFACTOR 
+
+let myLibrary = []; 
+
+class displayController {
+  openForm() {
+    form.style.display = "flex";
+  } 
+  closeForm() {
+    form.style.display = "none";
+  }
+  displayLibrary = () => {
+    let library = document.querySelector(".main-content");
+    library.textContent = '';
+    for (let i = 0; i < myLibrary.length; i++) {
+      let bookDiv = bookDisplayer.createBookDisplay(myLibrary[i]);
+      library.appendChild(bookDiv);
+    }
+    /* this.prepareButtons(haveReadButton, removeButton, bookDiv); */
+  }
+  addBook = (e) => {
+    e.preventDefault();
+    let titleField = document.getElementById("title");
+    let authorField = document.getElementById("author");
+    let pagesField = document.getElementById("pages");
+    let haveReadField = document.getElementById("have_read");
+    if (titleField.value && authorField.value && pagesField.value) {
+      let book = new Book(titleField.value, authorField.value, pagesField.value, haveReadField.checked);
+      titleField.value = "";
+      authorField.value = "";
+      pagesField.value = "";
+      myLibrary.push(book);
+      form.style.display = "none";
+    }
+    this.displayLibrary();
+  }
+
+  /* prepareButtons(haveReadButton, removeButton, bookDiv) {
+    haveReadButton.addEventListener("click", () => {
+      changeReadStatus(haveReadButton);
+    });
+    removeButton.addEventListener("click", () => {
+      deleteBook(bookDiv);
+    });
+  }
+  deleteBook() {
+    bookDiv.remove();
+  } */
+}
+
+class bookDisplay {
+  createBookDisplay(book) {
+    // Createa book div 
+    let bookDiv = document.createElement("div");
+    bookDiv.classList.add("book");
+    // Create the book internals 
+    let titleDiv = document.createElement("div");
+    let authorDiv = document.createElement("div");
+    let pagesDiv = document.createElement("div");
+    let haveReadButton = document.createElement("button");
+    let removeButton = document.createElement("button");
+    titleDiv.textContent = `${book["title"]}`;
+    authorDiv.textContent = `${book["author"]}`;
+    pagesDiv.textContent = `${book["pages"]} Pages`;
+    if (book.have_read) {
+      haveReadButton.textContent = "Read";
+      haveReadButton.classList.add("btn", "have-read");
+    } else {
+      haveReadButton.textContent = "Not Read"; 
+      haveReadButton.classList.add('btn', 'have-read', 'false');
+    }
+    removeButton.textContent = "Remove";
+    removeButton.classList.add("btn", "remove");
+    // Put the book internals into the book 
+    bookDiv.append(titleDiv, authorDiv, pagesDiv, haveReadButton, removeButton);
+    return bookDiv;
+  }
+}
+
+class Book {
+  constructor(title, author, pages, have_read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.have_read = have_read;
+  }
+}
+
+const form = document.querySelector(".form");
+const closeButton = document.querySelector(".close");
+const addBookButton = document.querySelector(".add-book");
+const submitButton = document.querySelector('.form-btn');
+const libraryDisplay = new displayController();
+const bookDisplayer = new bookDisplay();
+console.log(libraryDisplay);
+
+submitButton.addEventListener("click", libraryDisplay.addBook);
+closeButton.addEventListener("click", () => {
+  libraryDisplay.closeForm();
+});
+addBookButton.addEventListener("click", () => {
+  libraryDisplay.openForm();
+});
+
+// OLD CONSTRUCTOR CODE
+
+/* let myLibrary = [];
 
 let library = document.querySelector(".main-content");
 const form = document.querySelector(".form");
@@ -101,3 +208,5 @@ function openForm() {
 function closeForm() {
   form.style.display = "none";
 }
+
+*/
