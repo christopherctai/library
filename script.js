@@ -23,6 +23,9 @@ class displayController {
     let authorField = document.getElementById("author");
     let pagesField = document.getElementById("pages");
     let haveReadField = document.getElementById("have_read");
+    if (checkValidInputs) {
+      
+    }
     if (titleField.value && authorField.value && pagesField.value) {
       let book = new Book(titleField.value, authorField.value, pagesField.value, haveReadField.checked);
       titleField.value = "";
@@ -33,6 +36,10 @@ class displayController {
       form.style.display = "none";
     }
     this.displayLibrary();
+  }
+
+  checkValidInputs(title, author, pages) {
+  
   }
 
   deleteBook(book) {
@@ -113,6 +120,8 @@ closeButton.addEventListener("click", () => {
 addBookButton.addEventListener("click", () => {
   libraryDisplay.openForm();
 });
+
+
 
 // OLD CONSTRUCTOR CODE
 
