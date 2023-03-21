@@ -40,7 +40,26 @@ class displayController {
   }
 
   checkValidInputs(title, author, pages) {
-  
+    if (title.checkValidity()) {
+      document.getElementById('title-error').textContent = ''; 
+    } else {
+      document.getElementById('title-error').textContent = title.validationMessage;
+    }
+    if (author.checkValidity()) {
+      document.getElementById('author-error').textContent = ''; 
+    } else {
+      document.getElementById('author-error').textContent = author.validationMessage;
+    }
+    if (pages.checkValidity()) {
+      document.getElementById('pages-error').textContent = ''; 
+    } else {
+      document.getElementById('pages-error').textContent = pages.validationMessage;
+    }
+    if (title.checkValidity() && author.checkValidity() && pages.checkValidity()) {
+      return true;
+    } else {
+      return false; 
+    }
   }
 
   deleteBook(book) {
