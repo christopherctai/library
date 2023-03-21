@@ -23,14 +23,15 @@ class displayController {
     let authorField = document.getElementById("author");
     let pagesField = document.getElementById("pages");
     let haveReadField = document.getElementById("have_read");
-    if (checkValidInputs) {
-      
-    }
-    if (titleField.value && authorField.value && pagesField.value) {
+    const errorFields = document.querySelectorAll('.error-message')
+    if (this.checkValidInputs(titleField, authorField, pagesField)) {
       let book = new Book(titleField.value, authorField.value, pagesField.value, haveReadField.checked);
       titleField.value = "";
       authorField.value = "";
       pagesField.value = "";
+      errorFields.forEach((errorField) => {
+        errorField.value = ''; 
+      })
       haveReadField.checked = false;
       myLibrary.push(book);
       form.style.display = "none";
