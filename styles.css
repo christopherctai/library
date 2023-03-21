@@ -107,9 +107,9 @@ form {
     border-radius: 10px;
     box-shadow: 2px 2px 8px 5px gray;
 
-    display: none;
     flex-direction: column;
     gap: 20px;
+    display: none;
 }
 
 .form-title {
@@ -118,14 +118,19 @@ form {
 }
 
 .form-row {
-    display: flex;
-    justify-content: right;
+    display: grid;
+    grid-template-columns: 50px 1fr;
     align-items: center;
     gap: 10px;
 }
 
-.form-row.title-row {
-    justify-content: space-between;
+.btn.close {
+    margin-left: auto;
+}
+
+.error-message {
+    color: red; 
+    grid-column: 2 / 3; 
 }
 
 .btn.close {
